@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex="20">
+        <mat-card>
+            <mat-card-header><h3>Filter Options</h3></mat-card-header>
+            <mat-card-content>
+                <div>
+                    <h5>Alcohol:</h5>
+                    <ul *ngFor="let a of alcoholsList" style="list-style-type:none;">
+                        <li>
+                        <input type="checkbox" [(ngModel)]="a.checked" (click)="getAlcoholArray(a.strAlcoholic,a.checked)" value={{a.strAlcoholic}}>{{a.strAlcoholic}}
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div>
+                    <h5>Category:</h5>
+                    <ul *ngFor="let c of categoriesList" style="list-style-type:none;">
+                        <li>
+                            <input type="checkbox" [(ngModel)]="c.checked" (click)="getCategoryArray(c.strCategory,c.checked)" value={{c.strCategory}}>{{c.strCategory}}
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div>
+                    <h5>Glass:</h5>
+                    <ul *ngFor="let g of glassesList" style="list-style-type:none;">
+                        <li>
+                        <input type="checkbox" [(ngModel)]="g.checked" (click)="getGlassArray(g.strGlass,g.checked)" value={{g.strGlass}} >{{g.strGlass}}
+                        </li>
+                    </ul>
+                </div>
+                <span style="clear: both;"></span>
+                <hr>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex="80">
+        <div>
+            <input class="searchBox" type="text" [(ngModel)]="cocktailSearch.name" placeholder="Search Cocktails by Name"/>
+            <span><button mat-flat-button color="primary" (click)="searchByName(cocktailSearch.name)">Search</button>
+            </span>
+        </div>
+        <br/>
+        <div *ngIf="cocktails">
+            <mat-grid-list cols="5" rowHeight="200px" gutterSize="10px">
+                <mat-grid-tile *ngFor="let drink of finalDrinksArray" [routerLink]="['/cocktaildetails',drink.idDrink]">
+                <img height="200px" src="{{drink.strDrinkThumb}}" alt={{drink.strDrink}}>
+                <mat-grid-tile-footer>
+                    <h1 matLine>{{drink.strDrink | uppercase}}</h1>
+                </mat-grid-tile-footer>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <div [hidden]="cocktails">
+            <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+          </div>
+    </div>
+ </div>

@@ -1,0 +1,49 @@
+<div fxLayout="row wrap" fxLayoutGap="10px" style="background-color:maroon;">
+    <div fxFlex="10"></div>
+    <div fxFlex="30">
+        <mat-card>
+            <mat-card-header>
+            <mat-card-title>
+                <h3>{{drink.strDrink | uppercase}}</h3>
+            </mat-card-title>
+            </mat-card-header>
+            <img style="background-size:contain;" mat-card-image src="{{drink.strDrinkThumb}}" alt={{drink.name}}>
+            <mat-card-content>
+            <p>{{drink.description}}</p> 
+            </mat-card-content>
+            <mat-card-actions>
+            <!--<button mat-button [routerLink]="['/cocktaildetails', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
+            <button mat-button (click)="LikeButton(dish)">LIKE</button>
+            <button mat-button (click)="ShareButton(dish)">SHARE</button>
+            <span class="flex-spacer"></span>
+                <button mat-button [routerLink]="['/cocktaildetails', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
+            -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div fxFlex="10"></div>
+    <div fxFlex="40">
+        <mat-card>
+            <mat-card-content>
+                <h1><b>Ingredients</b></h1>
+                <ul *ngFor="let i of drink.IngredientsArr">
+                    <li>{{i}}</li>
+                </ul>
+                <hr>
+                <h1><b>Glass</b></h1>
+                <ul><li>{{drink.strGlass}}</li></ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex="10"></div>
+ </div>
+ <div fxLayout="row" fxLayoutGap="10px" style="background-color:maroon;color:white;">
+     <div fxFlex="35"></div>
+     <div fxFlex="30">
+        <p>{{drink.strInstructions}}</p>     
+     </div>
+     <div fxFlex="35"></div>
+ </div>
+<!--<div [hidden]="dish || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>-->
